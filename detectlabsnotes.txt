@@ -1,0 +1,40 @@
+virtualbox
+vagrant
+
+
+
+clone git site
+	git clone https://github.com/clong/DetectionLab.git
+
+run prepare for prereqs
+	.\prepare.ps1
+
+vagrant up --provider=<provider>	(virtualbox or vmware_desktop)
+
+		speed up by provisioning hosts in parallel
+open 4 terminal windows
+	term 1 & 2
+vagrant up logger	vagrant up dc
+		wait for dc host to finish creating the domain
+		past the step of provisioning process run
+	term 3 & 4
+vagrant up wef		vagrant up win10
+
+
+	check services are accessible
+.\post_build_checks.ps1
+
+    machines
+logger
+dc
+wef
+win10
+
+vagrant global-status
+
+vagrant up <VM_ID> (x4)
+
+vagrant snapshot save		with all vms up and will group them under same name
+
+vagrant snapshot restore <name>
+
